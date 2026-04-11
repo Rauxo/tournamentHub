@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require("./config/db");
 const authRoutes = require('./routes/auth.routes')
+const morgan = require('morgan')
 require('dotenv').config();
 
 const app = express();
@@ -10,6 +11,8 @@ connectDB();
 app.use(express.json()); // Parses incoming JSON requests
 // For parsing application/x-www-form-urlencoded (standard HTML forms)
 app.use(express.urlencoded({ extended: true })); 
+
+app.use(morgan("dev"));
 
 app.use('/api/v1/auth',authRoutes);
 
