@@ -1,9 +1,9 @@
-const bcrypt = require('bcrypt');
-const Organizations = require('../models/organisation.model');
+const bcrypt = require("bcrypt");
+const Organizations = require("../models/organisation.model");
 
-
+//Create Account
 exports.crateAccount = async (req, res) => {
-  const { orgName, orgMail, location , password } = req.body;
+  const { orgName, orgMail, location, password } = req.body;
 
   if (!orgName || !orgMail || !location || !password) {
     return res.status(400).json({ message: "All Fields are required" });
@@ -20,11 +20,50 @@ exports.crateAccount = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     // Create and save the new Organizations
-    const newOrg = new Organizations({ orgName, orgMail, location , password: hashedPassword });
+    const newOrg = new Organizations({
+      orgName,
+      orgMail,
+      location,
+      password: hashedPassword,
+    });
     await newOrg.save();
 
-    return res.status(200).json({message:"Your Account Crated Successfully."})
+    return res
+      .status(200)
+      .json({ message: "Your Account Crated Successfully." });
   } catch (err) {
     return res.status(500).json({ message: err.message });
+  }
+};
+
+// Login to Account
+
+exports.login = async (req, res) => {
+  const { orgMail, password } = req.body;
+  if (!orgMail || !password) {
+    return res.status(400).json({ message: "All Fields are required" });
+  }
+  try {
+    // Find the user by orgMail in the database
+    const user = await Organizations.findOne({ orgMail });
+    // If the orgMail does not exist, return an error
+    if (!user) {
+      return res.status(400).json({messagee:"Incorrect Mail."})
+    }
+
+    // Compare the provided password with the
+    // hashed password in the database
+    const passwordsMatch = await bcrypt.compare(password, user.password);
+
+    // If the passwords match, return the user object
+    if (passwordsMatch) {
+      return res.status(200).json( {user});
+      console.log(user);
+    } else {
+      // If the passwords don't match, return an error
+      return res.status(400).json({ messsage: "Incorrect password" });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
 };
