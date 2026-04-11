@@ -1,8 +1,17 @@
-const express = require('express');
-const router = express.Router(); // Create a new router object
-const {crateAccount, login} = require('../controllers/auth.conntroller')
+const express = require("express");
+const router = express.Router();
 
-router.post('/create',crateAccount);
-router.post('/login',login);
+const {
+  createAccount,
+  login,
+  logout,
+  getLoggedInUser,
+} = require("../controllers/auth.controller");
+const { authMiddleware } = require("../middleware/auth.middleware");
+
+router.post("/create", createAccount);
+router.post("/login", login);
+router.post("/logout", logout);
+router.get("/loggedin", authMiddleware, getLoggedInUser);
 
 module.exports = router;
