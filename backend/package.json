@@ -1,0 +1,15 @@
+{
+  "name": "tournamenthub",
+  "version": "1.0.0",
+  "description": "This is A Sports Tournament Weeb/App Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Saikia",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1"
+  }
+}
