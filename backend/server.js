@@ -1,27 +1,11 @@
-const express = require("express");
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/auth.routes");
-const morgan = require("morgan");
-require("dotenv").config();
-const cookieParser = require("cookie-parser");
+const express = require('express');
+require('dotenv').config()
 
-const PORT = process.env.PORT;
+
 
 const app = express();
-app.use(cookieParser());
+const PORT = process.env.PORT || 500;
 
-connectDB();
-app.use(express.json()); // Parses incoming JSON requests
-// For parsing application/x-www-form-urlencoded (standard HTML forms)
-app.use(express.urlencoded({ extended: true }));
-
-app.use(morgan("dev"));
-
-app.use("/api/v1/auth", authRoutes);
-
-app.get("/api/v1", (req, res) => {
-  res.send(`API is Running  ON port ${PORT}`);
-});
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+app.listen(PORT,()=>{
+    console.log(`Backeend is Runnig on PORT ${PORT}`);
+})
