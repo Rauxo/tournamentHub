@@ -1,6 +1,7 @@
 const organizationModel = require("../models/organization.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const tokenBlacklistModel = require("../models/tokenBlacklist.model");
 
 //create Account
 exports.createAccount = async (req, res) => {
@@ -78,5 +79,43 @@ exports.login = async (req, res) => {
     return res.status(500).json({
       message: "Something went wrong. Please try again later.",
     });
+  }
+};
+
+
+//lgout 
+exports.logout = async (req, res) => {
+  try {
+    const authHeader = req.headers["authorization"];
+
+    if (!authHeader) {
+      return res.status(400).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1]; // Bearer TOKEN
+
+    await tokenBlacklistModel.create({ token });
+
+    res.json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Logout failed" });
+  }
+};
+
+//get user (DEMO)
+exports.me = async(req,res)=>{
+try {
+    const OrganizationId = req.Organization.id;
+
+    const Organization = await organizationModel.findById(OrganizationId).select("-password");
+
+    res.json({
+      message: "User data fetched successfully",
+      Organization,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
