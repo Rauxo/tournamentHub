@@ -3,21 +3,21 @@ const mongoose = require('mongoose');
 const OrganizationSchema = new mongoose.Schema({
     orgName:{
         type:String,
-        require:true,
+        required: true
     },
     orgMail:{
         type:String,
-        require:true,
+        required: true,
         unique:true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
     location:{
         type:String,
-        require:true
+       required: true
     },
     password:{
         type:String,
-        require:true
+       required: true
     }
 
 },{timestamps:true});

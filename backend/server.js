@@ -3,6 +3,7 @@ require("dotenv").config();
 const morgan = require('morgan')
 const connectDb = require("./config/db");
 const authRoutes = require("./routes/auth.routes");
+const tournamentRoutes = require('./routes/tournament.routes')
 
 
 //connect db
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/tournament",tournamentRoutes)
 
 app.listen(PORT, () => {
   console.log(`Backeend is Runnig on PORT ${PORT}`);
