@@ -1,6 +1,6 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/auth.middleware');
-const { getAllTournament, getTournamentById, addTournament } = require('../controller/tournament.controller');
+const { getAllTournament, getTournamentById, addTournament, updateTournament, deleteTournament } = require('../controller/tournament.controller');
 const router = express.Router();
 
 //get All Tournament
@@ -13,9 +13,9 @@ router.get('/:tournamentId',getTournamentById)
 router.post('/add',authMiddleware,addTournament);
 
 //update 
-router.put('/update', authMiddleware);
+router.put('/update/:id', authMiddleware,updateTournament);
 
 //delete
-router.delete('/delete', authMiddleware)
+router.delete('/delete/:TournamentId', authMiddleware,deleteTournament)
 
 module.exports = router;
