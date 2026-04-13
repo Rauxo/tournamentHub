@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth.routes");
 const tournamentRoutes = require('./routes/tournament.routes');
 const participatRoutes = require('./routes/participant.route')
 const resultRoutes = require("./routes/result.routes")
+const organizersRoute = require('./routes/organizers.route')
 const path = require("path");
 
 
@@ -27,6 +28,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tournament",tournamentRoutes);
 app.use("/api/participant",participatRoutes)
 app.use("/api/result",resultRoutes);
+app.use("/api/organizers",organizersRoute);
 
 
 app.listen(PORT, () => {
