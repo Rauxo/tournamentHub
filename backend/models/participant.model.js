@@ -18,7 +18,10 @@ const participantSchema = new mongoose.Schema(
       ref: "Tournament",
       required: true,
     },
-    
+    organization: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Organization",
+    },
   },
   { timestamps: true },
 );
