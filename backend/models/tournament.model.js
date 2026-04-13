@@ -14,7 +14,10 @@ const tournamentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    imageUrl: [{ type: String }],
+    imageUrl: {
+      type: [String],
+      default: ["http://localhost:5000/default/defaultBanner.png"],
+    },
     description: {
       type: String,
     },
@@ -34,4 +37,4 @@ const tournamentSchema = new mongoose.Schema(
   },
 );
 
-module.exports  = mongoose.model("Tournament", tournamentSchema);
+module.exports = mongoose.model("Tournament", tournamentSchema);
