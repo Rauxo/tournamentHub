@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/tournamentHub.png";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,9 +18,9 @@ function Navbar() {
 
       <div className={`options ${menuOpen ? "active" : ""}`}>
         <ul>
-          <li>Home</li>
-          <li>Organizers</li>
-          <li>Results</li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/organizers">Organizers</Link></li>
+          <li><Link to="/results">Results</Link></li>
         </ul>
       </div>
     </nav>

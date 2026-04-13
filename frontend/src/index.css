@@ -13,7 +13,7 @@
   padding: 0 20px;
   height: 80px;
   width: 100%;
-  background: #0b6cdc;
+  background: #0f172a;
   color: white;
 }
 
@@ -52,7 +52,7 @@
     top: 80px;
     right: 0;
     width: 100%;
-    background: #0b6cdc;
+    background: #0f172a;
     display: none;
     flex-direction: column;
   }
@@ -79,7 +79,7 @@
 
 /* footer design */
 .footer {
-  background: #0b6cdc;
+  background: #0f172a;
   color: white;
   text-align: center;
   padding: 20px 10px;
@@ -105,6 +105,43 @@
   .footer p {
     font-size: 12px;
   }
+}
+.footer {
+  background: #0f172a;
+  color: #e2e8f0;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 40px;
+}
+
+.footer-logo img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+/* Links */
+.footer-links {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #38bdf8;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-link:hover {
+  color: #0ea5e9;
+}
+
+/* Text */
+.footer-text {
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 /* Tournament Card design  */
