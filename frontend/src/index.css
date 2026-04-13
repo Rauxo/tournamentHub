@@ -70,8 +70,38 @@
     padding: 10px 0;
   }
 
-  /* Optional: small logo text feel */
   .logo img {
     height: 40px;
+  }
+}
+
+
+/* footer design */
+.footer {
+  background: #0b6cdc;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+  margin-top: 50px;
+}
+
+.footer-logo img {
+  height: 50px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.footer p {
+  font-size: 14px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-logo img {
+    height: 40px;
+  }
+
+  .footer p {
+    font-size: 12px;
   }
 }
